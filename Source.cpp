@@ -10,7 +10,7 @@ typedef struct {
 	int var;
 }cblocks;
 
-//ektiposi arxeiou
+//Print file
 void printfile(int hits, int misses, int uniquea, int addrsize, vector<vector<cblocks>>c, int columns, int rows) {
 	ofstream fo;
 	int i, j;
@@ -36,50 +36,7 @@ void printfile(int hits, int misses, int uniquea, int addrsize, vector<vector<cb
 	fo.close();
 }
 
-/*//Eisagogi tis diefthinsis  sto telos tou pinaka diladi aftin pou xrisomopoiithike teleftea
-void movetofront(vector<long long int>& c, long long int addr,int index) {
-	int k;
-	vector<long long int>::iterator it;
-	it = find(c.begin(), c.end(), 0);
-	if (index == -1) {
-		if (it != c.end()) {
-			c[it-c.begin()] = addr;
-		}
-		else {
-			for (k = 0; k < c.size()-1; k++) //metakinei ola ta stixeia aristera kai xanete to 0 stoixeio kai prostithete sto telos i nea diefthinsi
-				c[k] = c[k + 1];
-			c[k] = addr;
-		}
-	}
-	else {
-		//ginete antalagi tis defthinseis kai pigenei teleftea
-		if (index != (c.size()-1)) {
-			long long int temp;
-			temp = c[index];
-			for (k = index; k < c.size() - 1; k++) {
-				if (c[k + 1] == 0)
-					break;
-				c[k] = c[k + 1];
-			}
-			c[k] = temp;
-		}
-	}
-}
-
-//Elegxos an iparxei i oxi i diefthinsi kai ginopnte oi analoges alages
-bool lru(vector<long long int>& c,long long int addr) {
-	vector<long long int>::iterator it;
-	it = find(c.begin(), c.end(), addr);
-	if (it == c.end()) {
-		movetofront(c,addr,-1);
-		return false;
-	}
-	else {
-		movetofront(c, addr, (it - c.begin()));
-		return true;
-	}
-}*/
-
+//Finds the index of the given address
 int findindex(vector<cblocks>c, long long int v) {
 	for (int i = 0; i < c.size(); i++) {
 		if (c[i].address == v) {
@@ -89,6 +46,7 @@ int findindex(vector<cblocks>c, long long int v) {
 	return -1;
 }
 
+//Finds the index with the specific RRPV
 int findindexvar(vector<cblocks>c, long long int v) {
 	for (int i = 0; i < c.size(); i++) {
 		if (c[i].var == v) {
@@ -98,6 +56,7 @@ int findindexvar(vector<cblocks>c, long long int v) {
 	return -1;
 }
 
+//Replaces the address when miiss and updates the replacement variavle when hit
 void replacelru(vector<cblocks>& c, long long int addr, int found) {
 	int i, index;
 	if (found == 0) {
@@ -142,6 +101,7 @@ void replacelru(vector<cblocks>& c, long long int addr, int found) {
 	}
 }
 
+//finds if the address hits or misses
 bool LRU(vector<cblocks>& c, long long int addr) {
 	int index;
 	index = findindex(c, addr);
@@ -202,7 +162,7 @@ void main() {
 		cout << "File open failed" << endl;
 		return;
 	}
-	//Diavasma arxeiou kai eisagogi diefthinseon se vector
+	//Read file and input all addresses to vector
 	while (!fi.eof()) {
 		fi >> addr;
 		address.push_back(addr);
@@ -212,7 +172,7 @@ void main() {
 		}
 	}
 	fi.close();
-	//Ektiposi menu
+	//Print menu
 	cout << "Give the size of cache(blocks): ";
 	cin >> blocks;
 	while (blocks < 1) {
@@ -248,7 +208,6 @@ void main() {
 			}
 		}
 	}
-	//Analoges entoles gia kathe eidos cache
 	switch (ways) {
 	case 0: {
 		cache.resize(1);
