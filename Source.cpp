@@ -3,7 +3,7 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
-using namespace std;
+using namespace std;//jrogjqeropvqeofvnpqejfovnjqenrvpijeqrvi
 
 typedef struct {
 	long long int address;
