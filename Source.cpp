@@ -5,6 +5,7 @@
 #include <algorithm>
 using namespace std;
 
+//Panayiotis Aristodemou
 typedef struct {
 	long long int address;
 	int var;
@@ -150,7 +151,8 @@ void main() {
 	ifstream fi;
 	vector<long long int>address;
 	vector<long long int>unique;
-	vector<vector<cblocks>>cache;
+	vector<vector<cblocks>>cache;	
+	//Panayiotis Aristodemou
 	vector<long long int>::iterator it;
 	int blocks, ways, brp, M, found, hits, misses, i, j, index;
 	bool hitormiss;
@@ -208,6 +210,7 @@ void main() {
 			}
 		}
 	}
+	//Panayiotis Aristodemou
 	switch (ways) {
 	case 0: {
 		cache.resize(1);
@@ -301,3 +304,4 @@ void main() {
 	}
 	}
 }
+//Panayiotis Aristodemou
